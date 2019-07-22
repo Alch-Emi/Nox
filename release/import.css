@@ -92,7 +92,7 @@
   color: var(--nox-white); }
 
 html, span:not(.spinner-2enMB9) {
-  backface-visibility: hidden; }
+  backface-visibility: unset; }
 
 /*changelog*/
 #bd-settingspane-container .content-column.default .bda-slist::before {
