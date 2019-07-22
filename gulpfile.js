@@ -7,7 +7,7 @@ const insert = require("gulp-insert");
 const wait = require("gulp-wait");
 const globImporter = require("node-sass-glob-importer");
 
-const META = `/*//META{"name":"Nox","description":"A theme for Discord loosely based on Google's Material Design Guidelines.","author":"Lilian Tedone & Zerebos","version":"1.0.0"}*//**/
+const META = `/*//META{"name":"Nox-Fixes","description":"A theme for Discord loosely based on Google's Material Design Guidelines. [FIX]","author":"Lilian Tedone & Zerebos","version":"1.0.1","update_url":"https://raw.githubusercontent.com/Alch-Emi/Nox-Fixes/all-fixes/release/Nox.theme.css"}*//**/
 
 `;
 
@@ -79,18 +79,10 @@ const sassOptions = {functions: {"inline-image($file)": sassInlineImage()}, impo
 gulp.task("import", function () {
   return gulp.src("./src/index.scss")
     .pipe(sass(sassOptions).on("error", sass.logError))
-    .pipe(rename({basename: "import", extname: ".css"}))
-    .pipe(insert.prepend(LICENSE))
-    .pipe(gulp.dest("./release/"));
-});
- 
-gulp.task("sass", function () {
-	return gulp.src("./src/index.scss")
-	  .pipe(wait(200))
-    .pipe(sass(sassOptions).on("error", sass.logError))
     .pipe(rename({basename: "Nox.theme", extname: ".css"}))
-    .pipe(insert.prepend(META + LICENSE))
-    .pipe(gulp.dest("Z:/Programming/BetterDiscordStuff/themes"));
+    .pipe(insert.prepend(LICENSE))
+    .pipe(insert.prepend(META))
+    .pipe(gulp.dest("./release/"));
 });
 
 gulp.task("sass-watch", function() {
